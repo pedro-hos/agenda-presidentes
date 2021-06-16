@@ -52,7 +52,7 @@ public class AgendaScrapper {
 	 * @return
 	 * @throws IOException
 	 */
-	public Agenda extradaDataFrom(final String dia) throws IOException { 
+	public Agenda extraiDadosDoDia(final String dia) throws IOException { 
 		
 		Agenda agenda = new Agenda();
 		agenda.dia = LocalDate.parse(dia, dataPattern);

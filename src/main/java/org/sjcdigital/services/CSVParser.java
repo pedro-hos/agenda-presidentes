@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.sjcdigital.model.Agenda;
 import org.sjcdigital.model.Compromisso;
 import org.slf4j.Logger;
@@ -29,7 +30,8 @@ import com.opencsv.CSVWriter;
 @ApplicationScoped
 public class CSVParser {
 	
-	String path = "/home/pesilva/workspace/code/pessoal/agenda-presidentes/data/bolsonaro/";
+	@ConfigProperty(name = "files.path")
+	String path;
 	 
 	static final String TEXT_ENCLOSER = "\"";
 	static final Logger LOGGER = LoggerFactory.getLogger(CSVParser.class);

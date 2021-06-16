@@ -40,12 +40,12 @@ public class Startup {
 		
 		try {
 			
-			//LocalDate start = LocalDate.of(2019, 01, 1);
+			LocalDate start = LocalDate.now();//LocalDate.of(2011, 01, 01);
 			List<Agenda> agendas = new ArrayList<>();
 			
-			//while(!LocalDate.now().isEqual(start)) {
-				LOGGER.info("Buscando informações: " + LocalDate.now());
-				agendas.add(scrapper.extradaDataFrom(LocalDate.now().format(scrapper.dataPattern)));
+			//while(!LocalDate.of(2016, 05, 12).isEqual(start)) {
+				LOGGER.info("Buscando informações: " + start);
+				agendas.add(scrapper.extraiDadosDoDia(start.format(scrapper.dataPattern)));
 				//start = start.plusDays(1);
 			//}
 			
