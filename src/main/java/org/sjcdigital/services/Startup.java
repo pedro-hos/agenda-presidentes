@@ -3,16 +3,10 @@
  */
 package org.sjcdigital.services;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import org.sjcdigital.model.Agenda;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,16 +32,17 @@ public class Startup {
 		LOGGER.info("The application is starting...");
 		
 		
+		/**
 		try {
 			
-			LocalDate start = LocalDate.now();//LocalDate.of(2011, 01, 01);
+			LocalDate start = LocalDate.of(2021, 07, 10);
 			List<Agenda> agendas = new ArrayList<>();
 			
-			//while(!LocalDate.of(2016, 05, 12).isEqual(start)) {
+			while(!LocalDate.now().plusDays(1).isEqual(start)) {
 				LOGGER.info("Buscando informações: " + start);
 				agendas.add(scrapper.extraiDadosDoDia(start.format(scrapper.dataPattern)));
-				//start = start.plusDays(1);
-			//}
+				start = start.plusDays(1);
+			}
 			
 			LOGGER.info("Total entradas >>>> " + agendas.size());
 			csvParser.convertAndSaveData(agendas);
@@ -55,7 +50,8 @@ public class Startup {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
+		**/
 
 	}
 	
