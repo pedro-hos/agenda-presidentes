@@ -12,9 +12,16 @@ import java.util.Objects;
  *
  */
 public class ParserUtils {
+	
+	public static DateTimeFormatter DATA_PATTERN_YYYY_MM_DD = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	public static DateTimeFormatter DATA_PATTERN_DD_MM_YYYY = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	public static LocalDate convertToLocalDate(final String value) {
-		return Objects.isNull(value) ? null : LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return convertToLocalDate(value, DATA_PATTERN_YYYY_MM_DD);
+	}
+	
+	public static LocalDate convertToLocalDate(final String value, final DateTimeFormatter pattern) {
+		return Objects.isNull(value) ? null : LocalDate.parse(value, pattern);
 	}
 
 	public static Integer convertToInteger(final String value) {
