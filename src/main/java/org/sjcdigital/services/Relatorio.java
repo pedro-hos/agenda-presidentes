@@ -38,7 +38,7 @@ public class Relatorio {
 	@ConfigProperty(name = "files.path")
 	String baseDir;
 	
-	String fileName = "summary.json";
+	String fileName = "report.json";
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Relatorio.class);
 	
@@ -83,9 +83,13 @@ public class Relatorio {
 	
 	private void createJsonFile(AgendaSummarized agenda) {
 		
+		
 		try {
 			
-			Files.write(Paths.get(baseDir + fileName), new ObjectMapper().writeValueAsString(agenda).getBytes());
+			String path = baseDir + fileName;
+			
+			LOGGER.info("Salvando em " + path);
+			Files.write(Paths.get(path), new ObjectMapper().writeValueAsString(agenda).getBytes());
 			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -109,7 +113,7 @@ public class Relatorio {
 			
 			CompromissoSummarized summarized = new CompromissoSummarized(ano + "", 
 																		 totalAno, 
-																		 "Sim", 
+																		 "Não", 
 																		 "O Presidente trabalhou aproximadamente: " + totalAno.toDays() + " dias, (" + totalAno.toHours() + " horas)" + " em " + ano,
 																		 "Foram " + diasSemCompromisso + " dias sem compromisso, e " 
 																		          + diasComCompromisso + " dias com compromisso, de um total de " + registrosPorAno.size() + " em " + 2019);

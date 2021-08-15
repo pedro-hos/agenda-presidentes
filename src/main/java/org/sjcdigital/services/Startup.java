@@ -3,17 +3,15 @@
  */
 package org.sjcdigital.services;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import org.sjcdigital.model.Agenda;
-import org.sjcdigital.utils.ParserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +34,15 @@ public class Startup {
 	Relatorio summarize;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Startup.class);
+	
+	public static void main(String[] args) {
+		//-d 1-10 -m 8 -a 2021
+		
+		List<Integer> collect = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
+		collect.forEach(System.out::println);
+		
+		System.out.println("1".split("-"));
+	}
 
 	public void populate(@Observes StartupEvent ev) {
 
