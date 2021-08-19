@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import org.sjcdigital.model.Agenda;
 import org.sjcdigital.services.AgendaScrapper;
 import org.sjcdigital.services.CSVParser;
+import org.sjcdigital.services.JoinAllData;
 import org.sjcdigital.services.Relatorio;
 import org.sjcdigital.utils.ParserUtils;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class AgendaMain implements Runnable {
 	@Inject
 	Relatorio relatorio;
 	
+	@Inject
+	JoinAllData joinData;
+	
 	@Option(names = {"-d", "--dia"}, split = "-", required = true, description = "Obrigatório. Use o parâmetro -d ou --dia, para indicar os dias da busca. Separe por '-' para indicar range. Ex. -d 1, -d 1-10, --dia 5-20")
 	Integer[] dias;
 	
@@ -52,6 +56,9 @@ public class AgendaMain implements Runnable {
 	
 	@Option(names = {"-r", "--relatorio"}, required = false, defaultValue = "false", description = "Opcional. Caso queira gerar o relatório json")
 	boolean report;
+	
+	@Option(names = {"-j", "--join"}, required = false, defaultValue = "false", description = "Opcional. Caso queira gerar o juntar todos em um unico CSV")
+	boolean join;
 
 	@Override
 	public void run() {
@@ -80,6 +87,10 @@ public class AgendaMain implements Runnable {
 		
 		if(report) {
 			relatorio.geraRelatorio();
+		} 
+		
+		if(join) {
+			joinData.join();
 		}
 		
 	}

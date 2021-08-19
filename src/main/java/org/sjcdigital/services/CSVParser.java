@@ -32,7 +32,8 @@ public class CSVParser {
 	
 	@ConfigProperty(name = "files.path")
 	String path;
-	 
+	
+	static final String EMPTY = "\"\""; 
 	static final String TEXT_ENCLOSER = "\"";
 	static final Logger LOGGER = LoggerFactory.getLogger(CSVParser.class);
 	static final String SEPARATOR = ",";
@@ -68,7 +69,12 @@ public class CSVParser {
 				 
 				 csvWriter.writeNext(new String[] {  formataData(agenda.dia), 
 						 							 converteBoolean(agenda.semCompromisso), 
-						 							 String.valueOf(agenda.horasTrabalhadas.toMinutes()) });
+						 							 String.valueOf(agenda.horasTrabalhadas.toMinutes()), 
+						 							 EMPTY, 
+						 							 EMPTY, 
+						 							 EMPTY, 
+						 							 EMPTY, 
+						 							 EMPTY });
 				 
 				 
 			 } else {
