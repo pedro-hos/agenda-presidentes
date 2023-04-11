@@ -75,7 +75,7 @@ public class AgendaScrapper {
 		divCompromissos.forEach(e -> {
 			
 			Compromisso compromisso = new Compromisso();
-			compromisso.titulo = e.select("h4.compromisso-titulo").text();
+			compromisso.titulo = e.select("h2.compromisso-titulo").text();
 			
 			if(SEM_COMPROMISSO_OFICIAL.equals(trataString(compromisso.titulo))) {
 				agenda.semCompromisso = true;
